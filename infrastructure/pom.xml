@@ -9,7 +9,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <groupId>br.com.all.all-citizens</groupId>
+    <groupId>br.com.all.citizens.infrastructure</groupId>
     <artifactId>infrastructure</artifactId>
 
     <properties>

@@ -9,7 +9,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <groupId>br.com.all.citizens</groupId>
+    <groupId>br.com.all.citizens.domain</groupId>
     <artifactId>domain</artifactId>
 
     <properties>

@@ -1,4 +1,4 @@
-package br.com.all.citizens;
+package br.com.all.citizens.domain;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
