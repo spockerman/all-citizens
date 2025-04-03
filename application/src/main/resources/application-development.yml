@@ -1,0 +1,6 @@
+server:
+  port: 8191
+  undertow:
+    threads:
+      worker: 34
+      io: 2
