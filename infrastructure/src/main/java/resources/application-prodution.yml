@@ -1,0 +1,18 @@
+postgres:
+  username: ${DATABASE_POSTGRES_USER}
+  password: ${DATABASE_POSTGRES_PASSWORD}
+  schema: all-citizen
+  url: ${DATABASE_POSTGRES_HOST}
+  port: ${DATABASE_POSTGRES_PORT}
+
+server:
+  port: 8191
+  undertow:
+    threads:
+      worker: 34
+      io: 2
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none

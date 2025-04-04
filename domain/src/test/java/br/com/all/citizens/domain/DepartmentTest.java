@@ -1,8 +1,8 @@
 package br.com.all.citizens.domain;
 
 import br.com.all.citizens.domain.department.Department;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 public class DepartmentTest {
     @Test

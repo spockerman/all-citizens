@@ -1,0 +1,13 @@
+postgres:
+  username: root
+  password: rootpwd
+  schema: all-citizen
+  url: localhost
+  port: 6000
+
+server:
+  port: 8191
+  undertow:
+    threads:
+      worker: 34
+      io: 2
