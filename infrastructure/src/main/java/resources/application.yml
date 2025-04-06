@@ -11,7 +11,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://${postgres.host}:${postgres.port}/${postgres.schema}
+    url: jdbc:postgresql://${postgres.url}:${postgres.port}/${postgres.schema}
     username: ${postgres.username}
     password: ${postgres.password}
     driver-class-name: org.postgresql.Driver
@@ -31,3 +31,10 @@ spring:
     properties:
       hibernate.generate_statistics: false
       hibernate.connection.provider_disables_autocommit: true
+  flyway:
+    enabled: true                  # Ativa o Flyway (true por padrão)
+    locations: classpath:db/migration  # Caminho padrão para os scripts
+    baseline-on-migrate: true      # Necessário se o DB já tem dados
+    validate-on-migrate: true      # Valida se scripts foram alterados
+    out-of-order: false            # Rejeita migrações fora de ordem
+    clean-disabled: true           # Impede que "clean" seja executado em produção
