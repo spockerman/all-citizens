@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8080
   compression:
     enabled: true
     min-response-size: 1024
@@ -10,6 +10,8 @@ server:
       io: 4
 
 spring:
+  logging:
+    level: { root: INFO, org.springframework: DEBUG }
   datasource:
     url: jdbc:postgresql://${postgres.url}:${postgres.port}/${postgres.schema}
     username: ${postgres.username}

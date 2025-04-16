@@ -6,7 +6,7 @@ postgres:
   port: ${DATABASE_POSTGRES_PORT}
 
 server:
-  port: 8191
+  port: 9191
   undertow:
     threads:
       worker: 34

@@ -6,7 +6,7 @@ postgres:
   port: 6000
 
 server:
-  port: 8191
+  port: 8181
   undertow:
     threads:
       worker: 34
