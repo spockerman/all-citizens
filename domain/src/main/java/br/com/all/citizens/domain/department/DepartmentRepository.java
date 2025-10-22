@@ -10,4 +10,5 @@ public interface DepartmentRepository {
     void deleteById(Integer id);
     List<Department> findByParentDepartmentId(Integer parentId);
 
+
 }
