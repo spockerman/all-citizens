@@ -32,24 +32,24 @@ CREATE TABLE user_account (
  is_active       BOOLEAN NOT NULL DEFAULT TRUE,
  UNIQUE (auth_provider, auth_subject)
 );
-
--- Solicitação (ServiceRequest)
 CREATE TABLE service_request (
-    id                   SERIAL PRIMARY KEY,
-    requester_person_id  INTEGER NOT NULL REFERENCES person(id) ON DELETE RESTRICT,
-    created_by_user_id   INTEGER NOT NULL REFERENCES user_account(id) ON DELETE RESTRICT,
-    address_id           INTEGER NOT NULL,
-    sub_topic_id         INTEGER references sub_topic(id) on delete restrict,
-    incident_id          INTEGER,
-    description          VARCHAR(3000),
-    external_doc_type_id INTEGER,
-    external_doc_desc    VARCHAR(60),
-    response_channel_id  INTEGER,
-    revision_flag        BOOLEAN NOT NULL DEFAULT FALSE,
-    confidential_flag    BOOLEAN NOT NULL DEFAULT FALSE,
-    notes                VARCHAR(500),
-    sms_notification     BOOLEAN NOT NULL DEFAULT FALSE,
-    parent_request_id    INTEGER REFERENCES service_request(id),
-    channel              VARCHAR(20) NOT NULL,      -- 'PHONE','MOBILE','WEB','BACKOFFICE'
-    created_at           TIMESTAMP NOT NULL DEFAULT NOW()
+ id                   SERIAL PRIMARY KEY,
+ ticket_number        VARCHAR(20) NOT NULL,
+ requester_person_id  INTEGER NOT NULL REFERENCES person(id) ON DELETE RESTRICT,
+ created_by_user_id   INTEGER NOT NULL REFERENCES user_account(id) ON DELETE RESTRICT,
+ address_id           INTEGER NOT NULL,
+ sub_topic_id         INTEGER REFERENCES sub_topic(id) ON DELETE RESTRICT,
+ incident_id          INTEGER,
+ description          VARCHAR(3000),
+ external_doc_type_id INTEGER,
+ external_doc_desc    VARCHAR(60),
+ response_channel_id  INTEGER,
+ revision_flag        BOOLEAN NOT NULL DEFAULT FALSE,
+ confidential_flag    BOOLEAN NOT NULL DEFAULT FALSE,
+ notes                VARCHAR(500),
+ sms_notification     BOOLEAN NOT NULL DEFAULT FALSE,
+ parent_request_id    INTEGER REFERENCES service_request(id),
+ channel              VARCHAR(20) NOT NULL,      -- 'PHONE','MOBILE','WEB','BACKOFFICE'
+ created_at           TIMESTAMP NOT NULL DEFAULT NOW(),
+ CONSTRAINT ux_service_request_ticket_number UNIQUE (ticket_number)
 );
