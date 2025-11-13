@@ -1,30 +1,34 @@
 package br.com.all.citizens.infrastructure.adapter.outbound.persistence.entity;
 
-import br.com.all.citizens.domain.citizen.CitizenType;
 import jakarta.persistence.*;
+
 import java.time.Instant;
 
 @Entity
-@Table(name = "citizen")
-public class JpaCitizenEntity {
+@Table(name = "employee")
+public class JpaEmployeeEntity {
 
     @Id
     @Column(name = "person_id")
     private Integer personId;
 
     @OneToOne
-    @MapsId // usa a mesma PK da Person
+    @MapsId
     @JoinColumn(name = "person_id")
     private JpaPersonEntity person;
 
-    @Column(name = "social_id", length = 20)
-    private String socialId;
+    @Column(name = "department_id", nullable = false)
+    private Integer departmentId;
 
-    @Enumerated(EnumType.STRING)
-    private CitizenType type;
+    @Column(name = "position_title", length = 100)
+    private String positionTitle;
+
+    @Column(name = "document_number", length = 40)
+    private String documentNumber;
 
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
+
 
 
     public Integer getPersonId() {
@@ -41,21 +45,28 @@ public class JpaCitizenEntity {
     public void setPerson(JpaPersonEntity person) {
         this.person = person;
     }
-
-    public String getSocialId() {
-        return socialId;
+    public Integer getDepartmentId() {
+        return departmentId;
     }
 
-    public void setSocialId(String socialId) {
-        this.socialId = socialId;
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public CitizenType getType() {
-        return type;
+    public String getPositionTitle() {
+        return positionTitle;
     }
 
-    public void setType(CitizenType type) {
-        this.type = type;
+    public void setPositionTitle(String positionTitle) {
+        this.positionTitle = positionTitle;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
     }
 
     public Instant getCreatedAt() {
@@ -66,3 +77,7 @@ public class JpaCitizenEntity {
         this.createdAt = createdAt;
     }
 }
+
+
+
+

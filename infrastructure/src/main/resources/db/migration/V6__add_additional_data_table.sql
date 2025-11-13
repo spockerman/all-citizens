@@ -4,9 +4,9 @@ CREATE TABLE category_additional_field (
     code          VARCHAR(100) UNIQUE NOT NULL,
     name          VARCHAR(200) NOT NULL,
     description   VARCHAR(400),
-    created_at    TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at    TIMESTAMP NOT NULL DEFAULT NOW(),
-    deleted_at    TIMESTAMP
+    created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    deleted_at    TIMESTAMPTZ
 );
 
 
@@ -54,9 +54,9 @@ CREATE TABLE additional_field (
     group_name        VARCHAR(100),
     data_source_type  VARCHAR(30) NOT NULL DEFAULT 'STATIC', -- STATIC | API
     data_source_ref   VARCHAR(400), -- STATIC: null, API: URL/rota/identificador de fonte
-    created_at        TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at        TIMESTAMP NOT NULL DEFAULT NOW(),
-    deleted_at        TIMESTAMP,
+    created_at        TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at        TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    deleted_at        TIMESTAMPTZ,
     CONSTRAINT uq_category_name UNIQUE (category_id, name)
 );
 
@@ -68,8 +68,8 @@ CREATE TABLE additional_field_option (
     sort_order      INTEGER NOT NULL DEFAULT 0,
     active          BOOLEAN NOT NULL DEFAULT TRUE,
     metadata        JSONB,                   -- opcional (cor, ícone, tags, etc.)
-    created_at      TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at      TIMESTAMP NOT NULL DEFAULT NOW(),
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     CONSTRAINT uq_field_value UNIQUE (field_id, value)
 );
 
@@ -86,12 +86,12 @@ CREATE TABLE additional_data_value (
     value_number    NUMERIC(18,4),
     value_boolean   BOOLEAN,
     value_date      DATE,
-    value_datetime  TIMESTAMP,
+    value_datetime  TIMESTAMPTZ,
     value_json      JSONB,                  -- ex.: multiselect: lista, file: metadados
 
     created_by      VARCHAR(100),
-    created_at      TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at      TIMESTAMP NOT NULL DEFAULT NOW(),
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
     CONSTRAINT uq_value_unique UNIQUE (category_id, field_id, target_table, target_id)
 );

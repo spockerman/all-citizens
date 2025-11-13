@@ -6,8 +6,8 @@ CREATE TABLE department (
     phone VARCHAR(20),
     email VARCHAR(100),
     active boolean not null,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP,
-    deleted_at TIMESTAMP
+    created_at TIMESTAMPTZ,
+    updated_at TIMESTAMPTZ,
+    deleted_at TIMESTAMPTZ
 
 );
