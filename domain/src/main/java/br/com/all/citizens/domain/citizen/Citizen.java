@@ -27,7 +27,13 @@ public class Citizen {
         this.deletedAt = deletedAt;
     }
 
-    public static Citizen newCitizen(String name, String cpf, String mobile, String email, CitizenType type) {
+    public static Citizen newCitizen(
+            String name,
+            String cpf,
+            String mobile,
+            String email,
+            CitizenType type
+    ) {
         Instant now = Instant.now();
         return new Citizen(
                 null,

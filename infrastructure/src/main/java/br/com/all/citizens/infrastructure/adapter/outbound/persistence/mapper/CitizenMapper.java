@@ -11,15 +11,17 @@ public class CitizenMapper {
     public static JpaCitizenEntity toEntity(Citizen citizen) {
         JpaCitizenEntity entity = new JpaCitizenEntity();
 
-        entity.setId(citizen.getId());
-        entity.setName(citizen.getName());
-        entity.setCpf(citizen.getCpf());
-        entity.setMobile(citizen.getMobile());
-        entity.setEmail(citizen.getEmail());
-        entity.setType(citizen.getType());
-        entity.setCreatedAt(citizen.getCreatedAt());
-        entity.setUpdatedAt(citizen.getUpdatedAt());
-        entity.setDeletedAt(citizen.getDeletedAt());
+
+
+//        entity.setId(citizen.getId());
+//        entity.setName(citizen.getName());
+//        entity.setCpf(citizen.getCpf());
+//        entity.setMobile(citizen.getMobile());
+//        entity.setEmail(citizen.getEmail());
+//        entity.setType(citizen.getType());
+//        entity.setCreatedAt(citizen.getCreatedAt());
+//        entity.setUpdatedAt(citizen.getUpdatedAt());
+//        entity.setDeletedAt(citizen.getDeletedAt());
 
         return entity;
     }
