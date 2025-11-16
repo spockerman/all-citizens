@@ -1,81 +1,72 @@
 package br.com.all.citizens.domain.citizen;
 
+import br.com.all.citizens.domain.person.Person;
 import java.time.Instant;
 
 public class Citizen {
 
-    private final Integer id;
-    private final String name;
-    private final String cpf;
-    private final String mobile;
-    private final String email;
+    private final Integer personId;   // PK compartilhada com Person
+    private final Person person;      // Agregado obrigatório
+    private final String socialId;
     private final CitizenType type;
     private final Instant createdAt;
-    private final Instant updatedAt;
-    private final Instant deletedAt;
 
-    private Citizen(Integer id, String name, String cpf, String mobile, String email, 
-                   CitizenType type, Instant createdAt, Instant updatedAt, Instant deletedAt) {
-        this.id = id;
-        this.name = name;
-        this.cpf = cpf;
-        this.mobile = mobile;
-        this.email = email;
+    private Citizen(
+            Integer personId,
+            Person person,
+            String socialId,
+            CitizenType type,
+            Instant createdAt
+    ) {
+        this.personId = personId;
+        this.person = person;
+        this.socialId = socialId;
         this.type = type;
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.deletedAt = deletedAt;
     }
 
-    public static Citizen newCitizen(
-            String name,
-            String cpf,
-            String mobile,
-            String email,
-            CitizenType type
-    ) {
+    /**
+     * Criação de um novo Citizen (lado de domínio).
+     * Aqui o person ainda não tem ID (pois será persistido).
+     */
+    public static Citizen newCitizen(Person person, String socialId, CitizenType type) {
         Instant now = Instant.now();
+
         return new Citizen(
-                null,
-                name,
-                cpf,
-                mobile,
-                email,
+                null,      // personId só existe após persistência
+                person,
+                socialId,
                 type,
-                now,
-                now,
-                null);
+                now
+        );
     }
 
+    /**
+     * Reconstrução de um Citizen vindo do banco (JPA -> domínio).
+     */
     public static Citizen with(
-            Integer id,
-            String name,
-            String cpf,
-            String mobile,
-            String email,
+            Integer personId,
+            Person person,
+            String socialId,
             CitizenType type,
-            Instant createdAt,
-            Instant updatedAt,
-            Instant deletedAt) {
+            Instant createdAt
+    ) {
         return new Citizen(
-                id,
-                name,
-                cpf,
-                mobile,
-                email,
+                personId,
+                person,
+                socialId,
                 type,
-                createdAt,
-                updatedAt,
-                deletedAt);
+                createdAt
+        );
     }
 
-    public Integer getId() { return id; }
-    public String getName() { return name; }
-    public String getCpf() { return cpf; }
-    public String getMobile() { return mobile; }
-    public String getEmail() { return email; }
+    public Integer getPersonId() { return personId; }
+
+    public Person getPerson() { return person; }
+
+    public String getSocialId() { return socialId; }
+
     public CitizenType getType() { return type; }
+
     public Instant getCreatedAt() { return createdAt; }
-    public Instant getUpdatedAt() { return updatedAt; }
-    public Instant getDeletedAt() { return deletedAt; }
 }
