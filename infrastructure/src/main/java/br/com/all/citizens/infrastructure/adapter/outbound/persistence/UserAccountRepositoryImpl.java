@@ -1,7 +1,9 @@
 package br.com.all.citizens.infrastructure.adapter.outbound.persistence;
 
+import br.com.all.citizens.domain.person.Person;
 import br.com.all.citizens.domain.userAccount.UserAccount;
 import br.com.all.citizens.domain.userAccount.UserAccountRepository;
+import br.com.all.citizens.infrastructure.adapter.outbound.persistence.mapper.PersonMapper;
 import br.com.all.citizens.infrastructure.adapter.outbound.persistence.mapper.UserAccountMapper;
 import br.com.all.citizens.infrastructure.adapter.outbound.persistence.repository.JpaUserAccountRepository;
 import org.springframework.stereotype.Component;
@@ -28,22 +30,30 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
     }
 
     @Override
-    public Optional<UserAccount> findByUsername(String username) {
-        return Optional.empty();
+    public Optional<UserAccount> findByPerson(Person person) {
+
+        return repository.findByPerson(PersonMapper.toEntity(person)).map(UserAccountMapper::toDomain);
     }
 
     @Override
     public Optional<UserAccount> findByEmail(String email) {
-        return Optional.empty();
+
+        return repository.findByEmail(email).map(UserAccountMapper::toDomain);
+    }
+
+    @Override
+    public Optional<UserAccount> findByMobile(String mobile) {
+        return repository.findByMobile(mobile).map(UserAccountMapper::toDomain);
     }
 
     @Override
     public Optional<UserAccount> findById(Integer id) {
-        return Optional.empty();
+
+        return repository.findById(id).map(UserAccountMapper::toDomain);
     }
 
     @Override
     public void InactiveUserAccount(Integer id) {
-
+        repository.InactiveUserAccount(id);
     }
 }

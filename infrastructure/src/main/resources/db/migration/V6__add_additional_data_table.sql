@@ -1,4 +1,4 @@
-
+`
 CREATE TABLE category_additional_field (
     id            INTEGER PRIMARY KEY,
     code          VARCHAR(100) UNIQUE NOT NULL,
