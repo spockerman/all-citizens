@@ -1,13 +1,14 @@
 package br.com.all.citizens.infrastructure.adapter.inbound.rest.dto;
 
-import br.com.all.citizens.domain.citizen.CitizenType;
+
+import br.com.all.citizens.domain.department.Department;
 
 import java.time.LocalDate;
 
-public record CreateCitizenRequest(
+public record CreateEmployeeRequest(
         String fullName,
         String cpfNumber,
         LocalDate birthDate,
-        String socialId,
-        CitizenType type
+        Department department,
+        String documentNumber
 ) {}

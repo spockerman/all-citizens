@@ -6,6 +6,6 @@ import java.util.Optional;
 public interface EmployeeRepository {
     Employee save(Employee employee);
     Optional<Employee> findByDocumentNumber(String documentNumber);
-    List<Employee> findByDepartment(Integer id);
+    Optional<Employee> findByDepartment(String departmentName);
 
 }

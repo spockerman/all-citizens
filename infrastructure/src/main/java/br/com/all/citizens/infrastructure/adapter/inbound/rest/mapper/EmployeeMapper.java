@@ -5,7 +5,7 @@ import br.com.all.citizens.domain.citizen.Citizen;
 import br.com.all.citizens.infrastructure.adapter.inbound.rest.dto.CitizenResponse;
 import br.com.all.citizens.infrastructure.adapter.inbound.rest.dto.CreateCitizenRequest;
 
-public class CitizenMapper {
+public class EmployeeMapper {
 
     public static CreateCitizenCommand toCommand(CreateCitizenRequest request) {
         return new CreateCitizenCommand(

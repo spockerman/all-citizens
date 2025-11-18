@@ -1,6 +1,7 @@
 package br.com.all.citizens.application.citizen.service;
 
 import br.com.all.citizens.application.citizen.usecase.FindBySocialIdUseCase;
+import br.com.all.citizens.domain.citizen.Citizen;
 import br.com.all.citizens.domain.citizen.CitizenRepository;
 import br.com.all.citizens.domain.exception.CitizenSocialIdNotFoundException;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,9 @@ public class FindBySocialIdService implements FindBySocialIdUseCase {
 
     @Override
     @Transactional(readOnly = true)
-    public String execute(String socialId) {
-        repository.findBySocialId(socialId).orElseThrow(() -> new CitizenSocialIdNotFoundException(socialId));
-         return socialId;
+    public Citizen execute(String socialId) {
+        return repository.findBySocialId(socialId)
+                .orElseThrow(() -> new CitizenSocialIdNotFoundException(socialId));
+
     }
 }

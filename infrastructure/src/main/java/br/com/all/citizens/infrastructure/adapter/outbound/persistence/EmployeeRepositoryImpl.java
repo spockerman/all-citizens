@@ -29,10 +29,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> findByDepartment(Integer department) {
-        return repositoy.findByDepartmentId(department)
-                .stream()
-                .map(EmployeeMapper::toDomain)
-                .toList();
+    public Optional<Employee> findByDepartment(String departmentName) {
+        return repositoy.findByDepartment(departmentName).map(EmployeeMapper::toDomain);
     }
 }

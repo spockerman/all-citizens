@@ -1,5 +1,6 @@
 package br.com.all.citizens.domain.employee;
 
+import br.com.all.citizens.domain.department.Department;
 import br.com.all.citizens.domain.person.Person;
 
 import java.time.Instant;
@@ -7,36 +8,41 @@ import java.time.Instant;
 public class Employee {
     private final Integer personId;   // PK compartilhada com Person
     private final Person person;      // Agregado obrigatório
-    private final Integer departmentId;
+    private final Department department;
     private final String documentNumber;
+    private final String positionTitle;
     private final Instant createdAt;
 
     public Employee(
             Integer personId,
             Person person,
-            Integer departmentId,
+            Department department,
             String documentNumber,
+            String positionTitle,
             Instant createdAt
     ) {
         this.personId = personId;
         this.person = person;
-        this.departmentId = departmentId;
+        this.department = department;
         this.documentNumber = documentNumber;
+        this.positionTitle = positionTitle;
         this.createdAt = createdAt;
     }
 
     public static Employee newEmployee(
             Person person,
-            Integer departmentId,
-            String documentNumber
+            Department department,
+            String documentNumber,
+            String positionTitle
     ) {
         Instant now = Instant.now();
 
         return new Employee(
                 null,      // personId só existe após persistência
                 person,
-                departmentId,
+                department,
                 documentNumber,
+                positionTitle,
                 now
         );
     }
@@ -44,15 +50,17 @@ public class Employee {
     public static Employee with(
             Integer personId,
             Person person,
-            Integer departmentId,
+            Department department,
             String documentNumber,
+            String positionTitle,
             Instant createdAt
     ) {
         return new Employee(
                 personId,
                 person,
-                departmentId,
+                department,
                 documentNumber,
+                positionTitle,
                 createdAt
         );
     }
@@ -65,13 +73,13 @@ public class Employee {
         return person;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
-    }
+    public Department getDepartment() { return department; }
 
     public String getDocumentNumber() {
         return documentNumber;
     }
+
+    public String getPositionTitle() { return positionTitle; }
 
     public Instant getCreatedAt() {
         return createdAt;

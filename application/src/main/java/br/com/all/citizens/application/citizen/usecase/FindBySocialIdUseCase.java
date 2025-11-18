@@ -1,5 +1,7 @@
 package br.com.all.citizens.application.citizen.usecase;
 
+import br.com.all.citizens.domain.citizen.Citizen;
+
 public interface FindBySocialIdUseCase {
-    String execute(String socialId);
+    Citizen execute(String socialId);
 }

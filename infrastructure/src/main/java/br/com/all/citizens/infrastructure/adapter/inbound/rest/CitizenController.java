@@ -3,6 +3,7 @@ package br.com.all.citizens.infrastructure.adapter.inbound.rest;
 import br.com.all.citizens.application.citizen.service.FindBySocialIdService;
 import br.com.all.citizens.application.citizen.usecase.CreateCitizenUseCase;
 import br.com.all.citizens.application.citizen.usecase.FindByIdCitizenUseCase;
+import br.com.all.citizens.application.citizen.usecase.FindBySocialIdUseCase;
 import br.com.all.citizens.infrastructure.adapter.inbound.rest.dto.CitizenResponse;
 import br.com.all.citizens.infrastructure.adapter.inbound.rest.dto.CreateCitizenRequest;
 import br.com.all.citizens.infrastructure.adapter.inbound.rest.mapper.CitizenMapper;
@@ -15,17 +16,16 @@ public class CitizenController {
 
     private final CreateCitizenUseCase createCitizenUseCase;
     private final FindByIdCitizenUseCase findByIdCitizenUseCase;
-    private final FindBySocialIdService findBySocialIdService;
+    private final FindBySocialIdUseCase findBySocialIdUseCase;
 
     public CitizenController(
             CreateCitizenUseCase createCitizenUseCase,
             FindByIdCitizenUseCase findByIdCitizenUseCase,
-            FindBySocialIdService findBySocialIdService
-
+            FindBySocialIdUseCase findBySocialIdUseCase
     ) {
         this.createCitizenUseCase = createCitizenUseCase;
         this.findByIdCitizenUseCase = findByIdCitizenUseCase;
-        this.findBySocialIdService = findBySocialIdService;
+        this.findBySocialIdUseCase = findBySocialIdUseCase;
     }
 
     @PostMapping
@@ -44,7 +44,7 @@ public class CitizenController {
 
     @GetMapping("/{socialId}")
     public ResponseEntity<CitizenResponse> findBySocialId(@PathVariable("socialId") String id) {
-        var citizen = findBySocialIdService.execute(id);
+        var citizen = findBySocialIdUseCase.execute(id);
         return ResponseEntity.ok(CitizenMapper.toResponse(citizen));
     }
 

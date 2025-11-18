@@ -17,8 +17,9 @@ public class JpaEmployeeEntity {
     @JoinColumn(name = "person_id")
     private JpaPersonEntity person;
 
-    @Column(name = "department_id", nullable = false)
-    private Integer departmentId;
+    @OneToOne
+    @JoinColumn(name="department_id")
+    private JpaDepartmentEntity department;
 
     @Column(name = "position_title", length = 100)
     private String positionTitle;
@@ -42,16 +43,14 @@ public class JpaEmployeeEntity {
     public JpaPersonEntity getPerson() {
         return person;
     }
+
     public void setPerson(JpaPersonEntity person) {
         this.person = person;
     }
-    public Integer getDepartmentId() {
-        return departmentId;
-    }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
-    }
+    public void setDepartment(JpaDepartmentEntity department) {this.department = department;}
+
+    public JpaDepartmentEntity getDepartment() { return department;}
 
     public String getPositionTitle() {
         return positionTitle;
