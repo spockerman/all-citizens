@@ -1,30 +1,32 @@
 package br.com.all.citizens.infrastructure.adapter.inbound.rest.mapper;
 
-import br.com.all.citizens.application.citizen.command.CreateCitizenCommand;
-import br.com.all.citizens.domain.citizen.Citizen;
-import br.com.all.citizens.infrastructure.adapter.inbound.rest.dto.CitizenResponse;
-import br.com.all.citizens.infrastructure.adapter.inbound.rest.dto.CreateCitizenRequest;
+import br.com.all.citizens.application.employee.command.CreateEmployeeCommand;
+import br.com.all.citizens.domain.employee.Employee;
+import br.com.all.citizens.infrastructure.adapter.inbound.rest.dto.CreateEmployeeRequest;
+import br.com.all.citizens.infrastructure.adapter.inbound.rest.dto.EmployeeResponse;
 
 public class EmployeeMapper {
 
-    public static CreateCitizenCommand toCommand(CreateCitizenRequest request) {
-        return new CreateCitizenCommand(
+    public static CreateEmployeeCommand toCommand(CreateEmployeeRequest request) {
+        return new CreateEmployeeCommand(
                 request.fullName(),
                 request.cpfNumber(),
                 request.birthDate(),
-                request.socialId(),
-                request.type()
+                request.departmentId(),
+                request.documentNumber(),
+                request.positionTitle()
         );
     }
 
-    public static CitizenResponse toResponse(Citizen citizen) {
-        return new CitizenResponse(
-                citizen.getPersonId(),
-                citizen.getPerson().getFullName(),
-                citizen.getPerson().getCpfNumber(),
-                citizen.getPerson().getBirthDate(),
-                citizen.getSocialId(),
-                citizen.getType()
+    public static EmployeeResponse toResponse(Employee employee) {
+        return new EmployeeResponse(
+                employee.getPersonId(),
+                employee.getPerson().getFullName(),
+                employee.getPerson().getCpfNumber(),
+                employee.getPerson().getBirthDate(),
+                employee.getDepartment(),
+                employee.getDocumentNumber(),
+                employee.getPositionTitle()
         );
     }
 }

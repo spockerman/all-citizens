@@ -10,5 +10,5 @@ public interface JpaUserAccountRepository extends JpaRepository<JpaUserAccountEn
     Optional<JpaUserAccountEntity> findByPerson(JpaPersonEntity person);
     Optional<JpaUserAccountEntity> findByEmail(String email);
     Optional<JpaUserAccountEntity> findByMobile(String mobile);
-    void InactiveUserAccount(Integer id);
+
 }

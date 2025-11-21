@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface JpaEmployeeRepository extends JpaRepository<JpaEmployeeEntity, Integer> {
     Optional<JpaEmployeeEntity> findByDocumentNumber(String documentNumber);
-    Optional<JpaEmployeeEntity> findByDepartment(String departmentName);
+    Optional<JpaEmployeeEntity> findByDepartment_Name(String departmentName);
 
 }

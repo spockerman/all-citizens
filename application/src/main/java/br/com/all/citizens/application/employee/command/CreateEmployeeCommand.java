@@ -8,7 +8,7 @@ public record CreateEmployeeCommand(
         String fullName,
         String cpfNumber,
         LocalDate birthDate,
-        Department department,
+        Integer departmentId,
         String documentNumber,
         String positionTitle
 ) {

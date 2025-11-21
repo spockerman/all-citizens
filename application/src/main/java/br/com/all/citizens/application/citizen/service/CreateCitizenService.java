@@ -2,6 +2,7 @@ package br.com.all.citizens.application.citizen.service;
 
 import br.com.all.citizens.application.citizen.command.CreateCitizenCommand;
 import br.com.all.citizens.application.citizen.usecase.CreateCitizenUseCase;
+import br.com.all.citizens.application.utils.PersonApplicationService;
 import br.com.all.citizens.domain.citizen.Citizen;
 import br.com.all.citizens.domain.citizen.CitizenRepository;
 import br.com.all.citizens.domain.person.Person;
@@ -10,26 +11,30 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @Service
 public class CreateCitizenService implements CreateCitizenUseCase {
 
     private final CitizenRepository citizenRepository;
     private final PersonRepository personRepository;
+    private final PersonApplicationService personService;
 
-    public CreateCitizenService(CitizenRepository citizenRepository, PersonRepository personRepository) {
+    public CreateCitizenService(CitizenRepository citizenRepository, PersonRepository personRepository, PersonApplicationService personService) {
         this.citizenRepository = citizenRepository;
         this.personRepository = personRepository;
+        this.personService = personService;
     }
 
     @Override
     @Transactional
     public Integer execute(CreateCitizenCommand command) {
-        Instant now = Instant.now();
+        Person savedPerson = personService.findOrCreatePerson(
+                command.fullName(),
+                command.cpfNumber(),
+                command.birthDate()
+        );
 
-        Person person = Person.newPerson(
-                command.fullName(), command.cpfNumber(), command.birthDate(), now, now, null);
-        Person savedPerson = personRepository.save(person);
 
         Citizen citizen = Citizen.newCitizen(
                 savedPerson,

@@ -28,7 +28,7 @@ public class JpaPersonEntity {
     @Column(name = "update_at", nullable = false)
     private Instant updateAt;
 
-    @Column(name = "delete_at", nullable = false)
+    @Column(name = "delete_at", nullable = true)
     private Instant deleteAt;
 
     // Relacionamento 1-1 com Citizen (PK compartilhada)

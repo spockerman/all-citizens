@@ -10,5 +10,5 @@ public interface UserAccountRepository {
     Optional<UserAccount> findByEmail(String email);
     Optional<UserAccount> findByMobile(String mobile);
     Optional<UserAccount> findById(Integer id);
-    void InactiveUserAccount(Integer id);
+
 }

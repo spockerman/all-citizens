@@ -4,7 +4,7 @@ import br.com.all.citizens.application.employee.usecase.FindByDocumentUseCase;
 import br.com.all.citizens.domain.employee.Employee;
 import br.com.all.citizens.domain.employee.EmployeeRepository;
 import br.com.all.citizens.domain.exception.EmployeeDocumentNotFoundException;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 
@@ -18,7 +18,7 @@ public class FindByDocumentService implements FindByDocumentUseCase {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Employee execute(String documentNumber) {
         return repository.findByDocumentNumber(documentNumber)
                         .orElseThrow(()-> new EmployeeDocumentNotFoundException(documentNumber));

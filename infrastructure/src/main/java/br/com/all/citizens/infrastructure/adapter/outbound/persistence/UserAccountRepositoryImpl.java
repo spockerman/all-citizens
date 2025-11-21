@@ -52,8 +52,4 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
         return repository.findById(id).map(UserAccountMapper::toDomain);
     }
 
-    @Override
-    public void InactiveUserAccount(Integer id) {
-        repository.InactiveUserAccount(id);
-    }
 }

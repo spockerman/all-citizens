@@ -33,7 +33,7 @@ public class Citizen {
         Instant now = Instant.now();
 
         return new Citizen(
-                null,      // personId só existe após persistência
+                person.getId(),       // personId só existe após persistência
                 person,
                 socialId,
                 type,

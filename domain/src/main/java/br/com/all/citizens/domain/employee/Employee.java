@@ -38,7 +38,7 @@ public class Employee {
         Instant now = Instant.now();
 
         return new Employee(
-                null,      // personId só existe após persistência
+                person.getId(),       // personId só existe após persistência
                 person,
                 department,
                 documentNumber,

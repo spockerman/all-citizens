@@ -3,9 +3,9 @@ CREATE TABLE person (
  full_name      VARCHAR(200) NOT NULL,
  cpf_number     VARCHAR(40),             -- National ID / Tax ID (e.g., CPF, CNPJ, etc.)
  birth_date     DATE,
- created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
- update_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
- delete_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+ created_at     TIMESTAMPTZ ,
+ update_at      TIMESTAMPTZ ,
+ delete_at      TIMESTAMPTZ 
 
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE citizen (
  person_id   SERIAL PRIMARY KEY REFERENCES person(id) ON DELETE CASCADE,
  social_id   VARCHAR(20),                 -- Social identification number (e.g., NIS)
  type VARCHAR(20) NOT NULL,
- created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
+ created_at  TIMESTAMPTZ 
 );
 
 CREATE TABLE employee (
@@ -21,7 +21,7 @@ CREATE TABLE employee (
  department_id   INTEGER NOT NULL,        -- Department / Secretariat
  position_title  VARCHAR(100),
  document_number VARCHAR(40),
- created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
+ created_at      TIMESTAMPTZ 
 );
 
 CREATE TABLE user_account (
@@ -48,6 +48,6 @@ CREATE TABLE service_request (
  notes                VARCHAR(500),
  parent_request_id    INTEGER REFERENCES service_request(id),
  channel              VARCHAR(20) NOT NULL,      -- 'PHONE','MOBILE','WEB','BACKOFFICE'
- created_at           TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+ created_at           TIMESTAMPTZ ,
  CONSTRAINT ux_service_request_ticket_number UNIQUE (ticket_number)
 );

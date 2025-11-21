@@ -2,46 +2,51 @@ package br.com.all.citizens.application.employee.service;
 
 import br.com.all.citizens.application.employee.command.CreateEmployeeCommand;
 import br.com.all.citizens.application.employee.usecase.CreateEmployeeUseCase;
+import br.com.all.citizens.application.utils.PersonApplicationService;
+import br.com.all.citizens.domain.department.Department;
+import br.com.all.citizens.domain.department.DepartmentRepository;
 import br.com.all.citizens.domain.employee.Employee;
 import br.com.all.citizens.domain.employee.EmployeeRepository;
 import br.com.all.citizens.domain.person.Person;
 import br.com.all.citizens.domain.person.PersonRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @Service
 public class CreateEmployeeService implements CreateEmployeeUseCase {
 
     private final EmployeeRepository employeeRepository;
     private final PersonRepository personRepository;
+    private final DepartmentRepository departmentRepository;
+    private final PersonApplicationService personService;
 
-    public CreateEmployeeService(
-            EmployeeRepository employeeRepository,
-            PersonRepository personRepository
-    ) {
+    public CreateEmployeeService(EmployeeRepository employeeRepository, PersonRepository personRepository, DepartmentRepository departmentRepository, PersonApplicationService personService) {
         this.employeeRepository = employeeRepository;
         this.personRepository = personRepository;
+        this.departmentRepository = departmentRepository;
+        this.personService = personService;
     }
 
     @Override
+    @Transactional
     public Integer execute(CreateEmployeeCommand command) {
-        Instant now = Instant.now();
-
-        Person person = Person.newPerson(
+        Person savedPerson = personService.findOrCreatePerson(
                 command.fullName(),
                 command.cpfNumber(),
-                command.birthDate(),
-                now,
-                now,
-                null
+                command.birthDate()
         );
 
-        Person savedPerson = personRepository.save(person);
+
+        Department department = departmentRepository.findById(command.departmentId())
+                .orElseThrow(() -> new IllegalArgumentException("Department not found: " + command.departmentId()));
+
 
         Employee employee = Employee.newEmployee(
                 savedPerson,
-                command.department(),
+                department,
                 command.documentNumber(),
                 command.positionTitle()
         );

@@ -2,16 +2,15 @@ package br.com.all.citizens.infrastructure.adapter.inbound.rest.dto;
 
 
 import br.com.all.citizens.domain.department.Department;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
-public record CreateEmployeeRequest(
+public record EmployeeResponse(
+        Integer id,
         String fullName,
         String cpfNumber,
-        @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDate birthDate,
-        Integer departmentId,
+        Department department,
         String documentNumber,
         String positionTitle
 ) {}

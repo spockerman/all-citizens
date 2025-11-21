@@ -67,12 +67,7 @@
             <version>3.24.2</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>br.com.all.citizens.infrastructure</groupId>
-            <artifactId>infrastructure</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
-        </dependency>
+
 
 
     </dependencies>
