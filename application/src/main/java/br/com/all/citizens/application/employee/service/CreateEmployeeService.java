@@ -7,6 +7,7 @@ import br.com.all.citizens.domain.department.Department;
 import br.com.all.citizens.domain.department.DepartmentRepository;
 import br.com.all.citizens.domain.employee.Employee;
 import br.com.all.citizens.domain.employee.EmployeeRepository;
+import br.com.all.citizens.domain.exception.DepartmentNotFoundException;
 import br.com.all.citizens.domain.person.Person;
 import br.com.all.citizens.domain.person.PersonRepository;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class CreateEmployeeService implements CreateEmployeeUseCase {
 
 
         Department department = departmentRepository.findById(command.departmentId())
-                .orElseThrow(() -> new IllegalArgumentException("Department not found: " + command.departmentId()));
+                .orElseThrow(() -> new DepartmentNotFoundException(command.departmentId()));
 
 
         Employee employee = Employee.newEmployee(
