@@ -1,7 +1,6 @@
 package br.com.all.citizens.application.userAccount.command;
 
 public record CreateUserAccountCommand (
-    Integer Id,
     Integer personId,
     String authProvider,
     String authSubject,

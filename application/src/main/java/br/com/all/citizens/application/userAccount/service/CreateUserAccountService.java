@@ -4,8 +4,10 @@ import br.com.all.citizens.application.userAccount.command.CreateUserAccountComm
 import br.com.all.citizens.application.userAccount.usecase.CreateUserAccountUseCase;
 import br.com.all.citizens.domain.userAccount.UserAccount;
 import br.com.all.citizens.domain.userAccount.UserAccountRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class CreateUserAccountService implements CreateUserAccountUseCase {
 
     private final UserAccountRepository userAccountRepository;
