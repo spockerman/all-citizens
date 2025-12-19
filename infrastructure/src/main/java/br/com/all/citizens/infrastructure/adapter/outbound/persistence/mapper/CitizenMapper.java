@@ -6,10 +6,8 @@ import br.com.all.citizens.infrastructure.adapter.outbound.persistence.entity.Jp
 import jakarta.persistence.EntityManager;
 
 public class CitizenMapper {
-    private static EntityManager entityManager;
 
-    public CitizenMapper(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public CitizenMapper() {
     }
 
     /**

@@ -7,11 +7,6 @@ import jakarta.persistence.EntityManager;
 
 public class UserAccountMapper {
 
-    private static EntityManager entityManager;
-
-    public UserAccountMapper(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     public static JpaUserAccountEntity toEntity(UserAccount userAccount) {
         if (userAccount == null) {
@@ -20,11 +15,8 @@ public class UserAccountMapper {
 
         JpaUserAccountEntity entity = new JpaUserAccountEntity();
 
-        // Obtain a reference to existing Person (avoids SELECT)
-        JpaPersonEntity personRef = entityManager.getReference(
-                JpaPersonEntity.class,
-                userAccount.getPersonId()
-        );
+        JpaPersonEntity personRef = new JpaPersonEntity();
+        personRef.setId(userAccount.getPersonId());
         entity.setPerson(personRef);
 
         entity.setId(userAccount.getId());
