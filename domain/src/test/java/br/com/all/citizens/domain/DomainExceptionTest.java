@@ -1,6 +1,17 @@
 package br.com.all.citizens.domain;
 
-import br.com.all.citizens.domain.exception.*;
+import br.com.all.citizens.domain.exception.CitizenNotFoundException;
+import br.com.all.citizens.domain.exception.CitizenSocialIdNotFoundException;
+import br.com.all.citizens.domain.exception.DepartmentNotFoundException;
+import br.com.all.citizens.domain.exception.EmployeeDocumentNotFoundException;
+import br.com.all.citizens.domain.exception.PersonCpfNotFoundException;
+import br.com.all.citizens.domain.exception.PersonFullNameNotFoundException;
+import br.com.all.citizens.domain.exception.PersonNotFoundException;
+import br.com.all.citizens.domain.exception.ServiceRequestNotFoundException;
+import br.com.all.citizens.domain.exception.SubTopicNotFoundException;
+import br.com.all.citizens.domain.exception.SubTopicTopicMismatchException;
+import br.com.all.citizens.domain.exception.TopicNotFoundException;
+import br.com.all.citizens.domain.exception.UserAccountNotFoundException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,5 +65,17 @@ public class DomainExceptionTest {
     public void topicAndSubTopicExceptions_messageFormat() {
         assertTrue(new TopicNotFoundException(2).getMessage().contains("2"));
         assertTrue(new SubTopicNotFoundException(3).getMessage().contains("3"));
+    }
+
+    @Test
+    public void serviceRequestNotFoundException_messageFormat() {
+        assertTrue(new ServiceRequestNotFoundException(44).getMessage().contains("44"));
+    }
+
+    @Test
+    public void subTopicTopicMismatchException_messageFormat() {
+        var ex = new SubTopicTopicMismatchException(5, 9);
+        assertTrue(ex.getMessage().contains("5"));
+        assertTrue(ex.getMessage().contains("9"));
     }
 }
